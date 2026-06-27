@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  /* Dark, slightly-blue neutral scale for backgrounds, panels, borders */
+  --color-surface-900: #0b0e14;
+  --color-surface-800: #12161f;
+  --color-surface-700: #1c212c;
+  --color-surface-600: #2a3140;
+  --color-surface-500: #3d4759;
+
+  /* Marquee-orange accent — nods to cinema lights rather than a generic
+     SaaS indigo/purple */
+  --color-brand-400: #ff8a5c;
+  --color-brand-500: #ff6b35;
+  --color-brand-600: #e8531d;
+}
+
+@layer components {
+  .search-input {
+    @apply w-full h-11 bg-surface-800 border border-surface-600
+           rounded-full text-white text-sm placeholder-gray-500
+           focus:outline-none focus:ring-2 focus:ring-brand-500
+           transition-all duration-200;
+  }
+
+  .movie-card {
+    @apply bg-surface-800 rounded-lg overflow-hidden
+           transition-transform duration-300 hover:scale-[1.03];
+  }
+}
+
+@media (max-width: 640px) {
+  .search-input {
+    font-size: 16px; /* stops iOS Safari auto-zooming on focus */
+    height: 3rem;
+  }
+}
+
+/* Respect people who've asked their OS for less motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
